@@ -1,4 +1,5 @@
 using CSV
+using Plots
 
 
 FILE_CONSTRUCTORS = "./resources/f1_data_set/constructors.csv" 
@@ -30,9 +31,9 @@ end
 
 function display_data(file)
     obj_file = CSV.File(file)
-    for row in obj_file
-        print(row)
-    end
+    print(obj_file)
+    bar_plot = bar(obj_file.driverId, obj_file.milliseconds)
+    savefig(bar_plot, "bar_pit_stop.png")
 end
 
 main()
