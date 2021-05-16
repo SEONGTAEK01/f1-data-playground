@@ -36,18 +36,23 @@ function print_main()
 end
 
 function display_data(file_to_read)
+    obj_file = CSV.File(file_to_read)
     for row in obj_file
         print(row)
     end
 end
 
 function display_race_results(file_to_read)
-    save_driver_id_and_name_as_dict()
     println("Displaying driver standings...")
+
+    save_constructor_id_as_dict()
+    save_driver_id_and_name_as_dict()
+
     obj_file = CSV.File(file_to_read)
     for row in obj_file
-        driver_name = DICT_DRIVERS[row.driverId]
-        println("Race_ID: $(row.raceId), Driver_Name: $(driver_name), Position: $(row.position), Points: $(row.points), Wins: $(row.time)")
+        driver_name = get(DICT_DRIVERS, row.driverId, "None")
+        constructor_name = get(DICT_CONSTRUCTORS, row.constructorId, "None")
+        println("Race_ID: $(row.raceId), $(driver_name), $(constructor_name), Position: $(row.position), Points: $(row.points), Wins: $(row.time)")
     end
 end
 
@@ -56,4 +61,10 @@ function save_driver_id_and_name_as_dict()
     global DICT_DRIVERS = CSV.File(FILE_DRIVERS, select=[:driverId, :driverRef]) |> Dict
 end
 
+function save_constructor_id_as_dict()
+    println("Saving constructor id in memory...")
+    global DICT_CONSTRUCTORS = CSV.File(FILE_CONSTRUCTORS, select=[:constructorId, :constructorRef]) |> Dict
+end
+
 main()
+
