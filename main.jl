@@ -58,13 +58,19 @@ end
 
 function save_driver_id_and_name_as_dict()
     println("Saving driver id and name in memory...")
-    global DICT_DRIVERS = CSV.File(FILE_DRIVERS, select=[:driverId, :driverRef]) |> Dict
+    global DICT_DRIVERS = CSV.File(FILE_DRIVERS, select=[:driverId, :surname]) |> Dict
 end
 
 function save_constructor_id_as_dict()
     println("Saving constructor id in memory...")
-    global DICT_CONSTRUCTORS = CSV.File(FILE_CONSTRUCTORS, select=[:constructorId, :constructorRef]) |> Dict
+    global DICT_CONSTRUCTORS = CSV.File(FILE_CONSTRUCTORS, select=[:constructorId, :name]) |> Dict
 end
+
+
+# function save_race_id_as_dict()
+    # println("Saving race id in memory...")
+    # global DICT_RACES = CSV.File(FILE_RACES, select=[])
+# end
 
 main()
 
