@@ -28,29 +28,31 @@ end
 function print_logo()
     println("
                                                                                                                                       
-                               ``.--::///////////////////////////////////////////-`./////////////-                    
-                            .:+syyyhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhys:-+yhhhhhhhhhhyo-`                    
-                        `:oyhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhys:-+yhhhhhhhhhhyo-                       
-                     `:syhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhys:.+yhhhhhhhhhhys-`                        
-                  `:syhhhhhhhhhyyyssssooooooooooooooooooooooooooooooooo:.+yhhhhhhhhhhyo:                           
-               `:syhhhhhhhhyyo:-::::///////////////////////////////:`.+yhhhhhhhhhhys-                             
-         `   :syhhhhhhhhys/.:oyyhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhys:./yhhhhhhhhhhys:`                              
-           :shhhhhhhhhyy/.:shhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhys:.+yhhhhhhhhhhys:                                 
-         :syhhhhhhhhys/`:syhhhhhhhhhhhhyyyyyyyyyyyyyyyyyyyyyy:./yhhhhhhhhhhys:`                                  
-     `:shhhhhhhhhyy:`:shhhhhhhhyyo////////////////////////:./yhhhhhhhhhhys:                                     
-   :syhhhhhhhhyy/`-syhhhhhhhhy/`                        `/yhhhhhhhhhhys:`                                      
--osssssssssss:`.ossssssssss/`                         :sssssssssssss:                                         
-                                                                                                                                                                                            
-                                                                                              
-``````````                                                 ``                ````                             
--mmyyyyyyy:                                                 +m:               syydm:                           
--Ny ``````  .oyyyyyy+`  -syyys`-hhyyyyyhyyyyyo. `yy     -h: +M/ -yyyyyys/      ``/Mo                           
--Nd:::::::..dm-````-md -Ny...` :My....sM+...-md``mN     /M+ +M/ `...:smmN+       /Mo                           
--Nmooooooo-:Ny      hM.-Mo     :Ms    oM:    hN.`mN     /M+ +M/  `/hdo-:Ns       /Mo                           
--Ny        :Ny      hM`-Mo     :Ms    oM:    hN.`mN     /M+ +M/ +my:`  -Ns       /Mo                           
--Ny        `yN+::::+ms -Mo     :Ms    oM:    hN. sNs++++yM+ +M/`hNo++++sMs   `/++yMy///`...`                   
-`/:         `-/ooo+/-  `/-     `/-    -/.    :/`  -///////. -/. `:///////-   `/+++++///```.`                   
-                                                                                              
+                                                                                                                                  
+                                 ``.--::///////////////////////////////////////////-`./////////////-                    
+                              .:+syyyhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhys:-+yhhhhhhhhhhyo-`                    
+                           `:oyhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhys:-+yhhhhhhhhhhyo-                       
+                         `:syhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhys:.+yhhhhhhhhhhys-`                        
+                       `:syhhhhhhhhhyyyssssooooooooooooooooooooooooooooooooo:.+yhhhhhhhhhhyo:                           
+                     `:syhhhhhhhhyyo:-::::///////////////////////////////:`.+yhhhhhhhhhhys-                             
+                   `:syhhhhhhhhys/.:oyyhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhys:./yhhhhhhhhhhys:`                              
+                 `:shhhhhhhhhyy/.:shhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhys:.+yhhhhhhhhhhys:                                 
+                :syhhhhhhhhys/`:syhhhhhhhhhhhhyyyyyyyyyyyyyyyyyyyyyy:./yhhhhhhhhhhys:`                                  
+             `:shhhhhhhhhyy:`:shhhhhhhhyyo////////////////////////:./yhhhhhhhhhhys:                                     
+            :syhhhhhhhhyy/`-syhhhhhhhhy/`                        `/yhhhhhhhhhhys:`                                      
+          -osssssssssss:`.ossssssssss/`                         :sssssssssssss:                                                                                                                                                             
+                                                                                                                                 
+                                                                                                                                
+          ``````````                                                 ``                ````                             
+         -mmyyyyyyy:                                                 +m:               syydm:                           
+         -Ny ``````  .oyyyyyy+`  -syyys`-hhyyyyyhyyyyyo. `yy     -h: +M/ -yyyyyys/      ``/Mo                           
+         -Nd:::::::..dm-````-md -Ny...` :My....sM+...-md``mN     /M+ +M/ `...:smmN+       /Mo                           
+         -Nmooooooo-:Ny      hM.-Mo     :Ms    oM:    hN.`mN     /M+ +M/  `/hdo-:Ns       /Mo                           
+          -Ny        :Ny      hM`-Mo     :Ms    oM:    hN.`mN     /M+ +M/ +my:`  -Ns       /Mo                           
+         -Ny        `yN+::::+ms -Mo     :Ms    oM:    hN. sNs++++yM+ +M/`hNo++++sMs   `/++yMy///`...`                   
+         `/:         `-/ooo+/-  `/-     `/-    -/.    :/`  -///////. -/. `:///////-   `/+++++///```.`                   
+                                                                                                                                  
+    
 
     ")
 end
@@ -84,9 +86,11 @@ function display_race_results(file_to_read)
     obj_file = CSV.File(file_to_read)
     for row in obj_file
         race_name = get(DICT_RACES, row.raceId, "None")
+        date_held = get(DICT_DATE, row.raceId, "None")
+        time_held = get(DICT_TIME, row.raceId, "None")
         driver_name = get(DICT_DRIVERS, row.driverId, "None")
         constructor_name = get(DICT_CONSTRUCTORS, row.constructorId, "None")
-        println("$(race_name), $(driver_name), $(constructor_name), Position: $(row.position), Points: $(row.points), Wins: $(row.time)")
+        println("$(race_name), $(date_held), $(time_held), $(driver_name), $(constructor_name), Position: $(row.position), Points: $(row.points), Wins: $(row.time)")
     end
 end
 
@@ -104,6 +108,8 @@ end
 function save_race_id_as_dict()
     println("Saving race id in memory...")
     global DICT_RACES = CSV.File(FILE_RACES, select=[:raceId, :name]) |> Dict
+    global DICT_DATE = CSV.File(FILE_RACES, select=[:raceId, :date]) |> Dict
+    global DICT_TIME = CSV.File(FILE_RACES, select=[:raceId, :time]) |> Dict
 end
 
 main()
