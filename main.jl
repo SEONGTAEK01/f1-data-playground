@@ -85,11 +85,11 @@ function display_race_results(file_to_read)
 
     obj_file = CSV.File(file_to_read)
     for row in obj_file
-        race_name = get(DICT_RACES, row.raceId, "None")
-        date_held = get(DICT_DATE, row.raceId, "None")
-        time_held = get(DICT_TIME, row.raceId, "None")
-        driver_name = get(DICT_DRIVERS, row.driverId, "None")
-        constructor_name = get(DICT_CONSTRUCTORS, row.constructorId, "None")
+        race_name = get_data_from_dict(DICT_RACES, row.raceId)
+        date_held = get_data_from_dict(DICT_DATE, row.raceId)
+        time_held = get_data_from_dict(DICT_TIME, row.raceId)
+        driver_name = get_data_from_dict(DICT_DRIVERS, row.driverId)
+        constructor_name = get_data_from_dict(DICT_CONSTRUCTORS, row.constructorId)
         println("$(race_name), $(date_held), $(time_held), $(driver_name), $(constructor_name), Position: $(row.position), Points: $(row.points), Wins: $(row.time)")
     end
 end
@@ -104,13 +104,17 @@ function save_constructor_id_as_dict()
     global DICT_CONSTRUCTORS = CSV.File(FILE_CONSTRUCTORS, select=[:constructorId, :name]) |> Dict
 end
 
-
 function save_race_id_as_dict()
     println("Saving race id in memory...")
     global DICT_RACES = CSV.File(FILE_RACES, select=[:raceId, :name]) |> Dict
     global DICT_DATE = CSV.File(FILE_RACES, select=[:raceId, :date]) |> Dict
     global DICT_TIME = CSV.File(FILE_RACES, select=[:raceId, :time]) |> Dict
 end
+
+function get_data_from_dict(target_dict, key)
+    return get(target_dict, key, "None")
+end
+
 
 main()
 
