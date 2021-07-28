@@ -1,4 +1,5 @@
-include("src/data_base/database.jl")
+include("src/data_base/database_loader.jl")
+include("src/data_base/database_operation.jl")
 
 
 function main()

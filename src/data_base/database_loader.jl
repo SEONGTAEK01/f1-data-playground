@@ -7,9 +7,9 @@ function load_all_csv_to_table()
     println("Start loading DB...")
 
     load_drivers_data()
-    load_constructors_data()
-    load_results_data()
-    load_other_data()
+    # load_constructors_data()
+    # load_results_data()
+    # load_other_data()
 
     println("Loading DB completed.\n")
 end
@@ -19,6 +19,12 @@ function load_drivers_data()
     global TABLE_DRIVER_STANDINGS = loadtable(FILE_DRIVER_STANDINGS, colparsers=Dict(:positionText=>String))
     global TABLE_DRIVERS = loadtable(FILE_DRIVERS)
     println("> Loading drivers data completed.\n")
+    return TABLE_DRIVERS
+    # result = ""
+    # for row in TABLE_DRIVERS
+    #     result = string(result) * string(row) * "\n"
+    # end
+    # return string(result)
 end
 
 function load_constructors_data()
