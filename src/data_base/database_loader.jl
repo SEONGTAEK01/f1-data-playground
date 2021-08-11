@@ -16,15 +16,9 @@ end
 
 function load_drivers_data()
     println("> Start loading drivers data...")
-    global TABLE_DRIVER_STANDINGS = loadtable(FILE_DRIVER_STANDINGS, colparsers=Dict(:positionText=>String))
+    # global TABLE_DRIVER_STANDINGS = loadtable(FILE_DRIVER_STANDINGS, colparsers=Dict(:positionText=>String))
     global TABLE_DRIVERS = loadtable(FILE_DRIVERS)
     println("> Loading drivers data completed.\n")
-    return TABLE_DRIVERS
-    # result = ""
-    # for row in TABLE_DRIVERS
-    #     result = string(result) * string(row) * "\n"
-    # end
-    # return string(result)
 end
 
 function load_constructors_data()

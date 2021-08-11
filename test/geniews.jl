@@ -1,16 +1,22 @@
-using Genie
-using Genie.Router
-using Genie.Renderer
+using Genie, Genie.Router
+using Genie.Renderer, Genie.Renderer.Html, Genie.Renderer.Json
+
+include("../src/data_base/database_loader.jl")
+include("../src/data_base/database_operation.jl")
 
 
-include("../data_base/database_loader.jl")
-include("../data_base/database_operation.jl")
+load_all_csv_to_table()
 
+route("/") do
+    respond("Hello F1!", :text)
+end
 
-function set_routers()
-    route("/drivers_profile.txt") do
-        respond(format_drivers_profile(get_drivers_profile()), :text)
-    end
+route("/hello.txt") do
+    respond(format_drivers_profile(get_drivers_profile()), :text)
+end
+
+route("/hello.json") do
+    json("Hello World JSON")
 end
 
 function format_drivers_profile(table_drivers)
@@ -29,15 +35,4 @@ function format_drivers_profile(table_drivers)
     return result
 end
 
-function run_server()
-    up(8001, async=false)
-end
-
-function main()
-    load_all_csv_to_table()
-    set_routers()
-    run_server()
-end
-
-
-main()
+up(8001, async=false)   
