@@ -43,13 +43,14 @@ end
 function format_constructors(table_constructors)
     # Table column example
     # constructorId, constructorRef, name, nationality,url
-    result = "Name\t\tNationality\tWiki URL\n"
+    result = "Constructor ID\tName\t\tNationality\tWiki URL\n"
     for row in table_constructors
+        id = rpad(string(row.constructorId), 16, " ")
         name = rpad(string(row.name), 16, " ")
         nationality = rpad(string(row.nationality), 16, " ")
         url = string(row.url)
 
-        result = result * name * nationality * url * "\n"
+        result = result * id * name * nationality * url * "\n"
     end
     return result
 end
