@@ -7,7 +7,7 @@ function load_all_csv_to_table()
     println("Start loading DB...")
 
     load_drivers_data()
-    # load_constructors_data()
+    load_constructors_data()
     # load_results_data()
     # load_other_data()
 
@@ -23,8 +23,9 @@ end
 
 function load_constructors_data()
     println("> Start loading constructors data...")
-    global TABLE_CONSTRUCTOR_RESULTS = loadtable(FILE_CONSTRUCTOR_RESULTS)
-    global TABLE_CONSTRUCTOR_STANDINGS = loadtable(FILE_CONSTRUCTOR_STANDINGS, colparsers=Dict(:positionText=>String))
+    global TABLE_CONSTRUCTORS = loadtable(FILE_CONSTRUCTORS)
+    # global TABLE_CONSTRUCTOR_RESULTS = loadtable(FILE_CONSTRUCTOR_RESULTS)
+    # global TABLE_CONSTRUCTOR_STANDINGS = loadtable(FILE_CONSTRUCTOR_STANDINGS, colparsers=Dict(:positionText=>String))
     println("> Loading constructors data completed.\n")
 end
 

@@ -1,6 +1,7 @@
 PATH_DATA_RESOURCE = "/Users/seong-taekhong/dev/f1-data-playground/resources/f1_data_set"
 
 FILE_CIRCUITS = joinpath(PATH_DATA_RESOURCE, "circuits.csv")
+FILE_CONSTRUCTORS = joinpath(PATH_DATA_RESOURCE, "constructors.csv")
 FILE_CONSTRUCTOR_RESULTS = joinpath(PATH_DATA_RESOURCE, "constructor_results.csv")
 FILE_CONSTRUCTOR_STANDINGS = joinpath(PATH_DATA_RESOURCE, "constructor_standings.csv")
 FILE_DRIVER_STANDINGS = joinpath(PATH_DATA_RESOURCE, "driver_standings.csv")

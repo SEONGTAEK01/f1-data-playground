@@ -9,6 +9,10 @@ function get_drivers_standings()
     return TABLE_DRIVER_STANDINGS
 end
 
+function get_constructors_profile()
+    return TABLE_CONSTRUCTORS
+end
+
 function get_constructor_result()
     return TABLE_CONSTRUCTOR_RESULTS
 end

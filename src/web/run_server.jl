@@ -8,8 +8,17 @@ include("../data_base/database_operation.jl")
 
 
 function set_routers()
+    route("/") do
+        respond("Hello :)", :text)
+        
+    end
+
     route("/drivers_profile.txt") do
         respond(format_drivers_profile(get_drivers_profile()), :text)
+    end
+
+    route("/constructors.txt") do
+        respond(format_constructors(get_constructors_profile()), :text)
     end
 end
 
@@ -25,6 +34,20 @@ function format_drivers_profile(table_drivers)
         date_of_birth = string(row.dob)
 
         result = result * driver_id * surname * date_of_birth * "\n"
+    end
+    return result
+end
+
+function format_constructors(table_constructors)
+    # Table column example
+    # constructorId, constructorRef, name, nationality,url
+    result = "Name\t\tNationality\tWiki URL\n"
+    for row in table_constructors
+        name = rpad(string(row.name), 16, " ")
+        nationality = rpad(string(row.nationality), 16, " ")
+        url = string(row.url)
+
+        result = result * name * nationality * url * "\n"
     end
     return result
 end
