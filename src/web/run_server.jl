@@ -27,13 +27,15 @@ function format_drivers_profile(table_drivers)
     # (driverId = 1, driverRef = "hamilton", number = "44", code = "HAM", 
     # forename = "Lewis", surname = "Hamilton", dob = Dates.Date("1985-01-07"), 
     # nationality = "British", url = "http://en.wikipedia.org/wiki/Lewis_Hamilton")
-    result = "Driver ID\tDriver Name\t\t Date of Birth\n"
+    result = "Driver ID\tDriver Name\t\t Date of Birth\tNationality\tURL\n"
     for row in table_drivers
         driver_id = rpad(string(row.driverId), 16, " ")
         surname = rpad(string(row.surname), 25, " ")
-        date_of_birth = string(row.dob)
+        date_of_birth = rpad(string(row.dob), 15, " ")
+        nationality = rpad(string(row.nationality), 16, " ")
+        url = string(row.url)
 
-        result = result * driver_id * surname * date_of_birth * "\n"
+        result = result * driver_id * surname * date_of_birth * nationality * url * "\n"
     end
     return result
 end
