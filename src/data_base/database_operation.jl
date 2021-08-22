@@ -33,3 +33,6 @@ function get_qualifying_data()
     return TABLE_QUALIFYING
 end
 
+function get_circuits_data()
+    return TABLE_CIRCUITS
+end

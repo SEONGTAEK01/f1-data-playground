@@ -20,6 +20,10 @@ function set_routers()
     route("/constructors.txt") do
         respond(format_constructors(get_constructors_profile()), :text)
     end
+
+    route("/circuits.txt") do
+        respond(format_circuits(get_circuits_data()), :text)
+    end
 end
 
 function format_drivers_profile(table_drivers)
@@ -51,6 +55,26 @@ function format_constructors(table_constructors)
         url = string(row.url)
 
         result = result * id * name * nationality * url * "\n"
+    end
+    return result
+end
+
+function format_circuits(table_circuits)
+    # Table column example
+    # circuitId,circuitRef,name,location,country,lat,lng,alt,url
+    result = "ID\tCircuit Reference\tCircuit Name\t\t\t\tLocation\t\tCountry\t\tLatitude\tLongitude\tAltitude\tURL\n"
+    for row in table_circuits
+        id = rpad(string(row.circuitId), 8, " ")
+        ref = rpad(string(row.circuitRef), 24, " ")
+        name = rpad(string(row.name), 40, " ")
+        location = rpad(string(row.location), 24, " ")
+        country = rpad(string(row.country), 16, " ")
+        latitude = rpad(string(row.lat), 16, " ")
+        longitude = rpad(string(row.lng), 16, " ")
+        altitude = rpad(string(row.alt), 16, " ")
+        url = rpad(string(row.url), 16, " ")
+
+        result = result * id * ref * name * location * country * latitude * longitude * altitude * url * "\n"
     end
     return result
 end

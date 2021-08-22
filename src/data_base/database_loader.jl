@@ -6,10 +6,10 @@ include("database_constants.jl")
 function load_all_csv_to_table()
     println("Start loading DB...")
 
-    load_drivers_data()
-    load_constructors_data()
+    # load_drivers_data()
+    # load_constructors_data()
     # load_results_data()
-    # load_other_data()
+    load_other_data()
 
     println("Loading DB completed.\n")
 end
