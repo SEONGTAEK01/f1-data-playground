@@ -1,16 +1,16 @@
 using Genie
 using Genie.Router
 using Genie.Renderer
+using Genie.Renderer.Html
 
 
 include("../data_base/database_loader.jl")
 include("../data_base/database_operation.jl")
 
 
-function set_routers()
+function set_routers()     
     route("/") do
-        respond("Hello :)", :text)
-        
+        respond("Hello :)", :text)  
     end
 
     route("/drivers_profile.txt") do
@@ -24,6 +24,11 @@ function set_routers()
     route("/circuits.txt") do
         respond(format_circuits(get_circuits_data()), :text)
     end
+
+    # Current working directory is ... $project_dir/public/ !!!!
+    route("/test_figure") do 
+        html("<img src='/img/my_fig.png' />")
+      end
 end
 
 function format_drivers_profile(table_drivers)
