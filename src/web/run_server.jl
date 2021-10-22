@@ -6,6 +6,7 @@ using Genie.Renderer.Html
 
 include("../data_base/database_loader.jl")
 include("../data_base/database_operation.jl")
+include("../utils/figure_creator.jl")
 
 
 function set_routers()     
@@ -28,6 +29,11 @@ function set_routers()
     # Current working directory is ... $project_dir/public/ !!!!
     route("/test_figure") do 
         html("<img src='/img/my_fig.png' />")
+      end
+    
+      route("test_figure_two") do
+        create_figure(TABLE_PIT_STOPS)
+        html("<img src='/img/result.png' />")
       end
 end
 

@@ -39,9 +39,9 @@ end
 
 function load_other_data()
     println("> Start loading other data...")
-    global TABLE_CIRCUITS = loadtable(FILE_CIRCUITS)
-    global TABLE_LAP_TIMES = loadtable(FILE_LAP_TIMES)
+    # global TABLE_CIRCUITS = loadtable(FILE_CIRCUITS)
+    # global TABLE_LAP_TIMES = loadtable(FILE_LAP_TIMES)
     global TABLE_PIT_STOPS = loadtable(FILE_PIT_STOPS, colparsers=Dict(:duration=>String))
-    global TABLE_STATUS = loadtable(FILE_STATUS)
+    # global TABLE_STATUS = loadtable(FILE_STATUS)
     println("> Loading other data completed.\n")
 end
